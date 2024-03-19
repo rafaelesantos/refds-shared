@@ -1,9 +1,12 @@
-# Product Name
-> Short blurb about what your product does.
+# Refds Shared
 
-One to two paragraph statement about your product and what it does.
+`RefdsShared` is a collection of handy functions and extensions to facilitate Swift development. This package provides a variety of extensions for primitive types, date manipulation, and new components that can be easily integrated into other Swift projects.
 
-![](header.png)
+## Features
+
+- [x] **Extensions for Primitive Types**: Extensions for primitive types like String, Int, Double, etc., to add additional functionality and ease working with these types.
+- [x] **Date Manipulation**: Functions to facilitate date manipulation, such as formatting, difference calculation, etc.
+- [x] **New Components**: Custom components that can be easily integrated into user interfaces, such as new controls, custom views, etc.
 
 ## Installation
 
@@ -14,23 +17,16 @@ import PackageDescription
 
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/rafaelesantos/.git", branch: "main")
+        .package(url: "https://github.com/rafaelesantos/refds-shared.git", branch: "main")
     ],
     targets: [
         .target(
             name: "YourProject",
             dependencies: [
                 .product(
-                    name: "",
-                    package: ""),
+                    name: "RefdsShared",
+                    package: "refds-shared"),
             ]),
     ]
 )
-```
-
-## Usage example
-
-
-```swift
-
 ```
