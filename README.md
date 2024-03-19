@@ -1,5 +1,7 @@
 # Refds Shared
 
+[![CI](https://github.com/rafaelesantos/refds-shared/actions/workflows/swift.yml/badge.svg)](https://github.com/rafaelesantos/refds-shared/actions/workflows/swift.yml)
+
 `RefdsShared` is a collection of handy functions and extensions to facilitate Swift development. This package provides a variety of extensions for primitive types, date manipulation, and new components that can be easily integrated into other Swift projects.
 
 ## Features
