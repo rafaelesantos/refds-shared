@@ -119,13 +119,13 @@ final class RefdsSharedTests: XCTestCase {
     }
     
     func testRefdsLogger() {
-        RefdsLoggerSystem.shared.error(message: "")
-        RefdsLoggerSystem.shared.info(message: "")
+        RefdsLoggerSystem.shared.error(bundle: "", message: "")
+        RefdsLoggerSystem.shared.info(bundle: "", message: "")
     }
     
     func testRefdsModel() {
         let model = RefdsModelMock()
-        model.logger.error(message: "")
+        model.logger.error(bundle: "", message: "")
     }
     
     func testRefdsError() {
