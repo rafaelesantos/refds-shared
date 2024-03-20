@@ -20,4 +20,8 @@ public enum RefdsError: Error, CustomStringConvertible, Equatable, RefdsLogger {
     public static func == (lhs: RefdsError, rhs: RefdsError) -> Bool {
         lhs.description == rhs.description
     }
+    
+    public var logger: Void {
+        RefdsLoggerSystem.shared.error(message: description)
+    }
 }

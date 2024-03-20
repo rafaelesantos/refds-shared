@@ -19,8 +19,12 @@ public enum RefdsLoggerTag: RefdsModel {
         }
     }
     
+    public var logger: Void {
+        console()
+    }
+    
     public func console(
-        bundle: String?,
+        bundle: String? = Bundle.main.bundleIdentifier,
         file: String = #file,
         line: Int = #line,
         function: String = #function
