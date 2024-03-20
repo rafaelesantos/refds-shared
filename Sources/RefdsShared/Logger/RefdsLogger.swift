@@ -1,7 +1,12 @@
 import Foundation
 
 public protocol RefdsLogger {
-    var logger: Void { get }
+    var loggerInstance: RefdsLoggerSystem { get }
+    func logger()
+}
+
+public extension RefdsLogger {
+    var loggerInstance: RefdsLoggerSystem { .shared }
 }
 
 public final class RefdsLoggerSystem {

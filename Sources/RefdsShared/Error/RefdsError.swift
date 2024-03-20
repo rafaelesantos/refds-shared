@@ -21,7 +21,7 @@ public enum RefdsError: Error, CustomStringConvertible, Equatable, RefdsLogger {
         lhs.description == rhs.description
     }
     
-    public var logger: Void {
-        RefdsLoggerSystem.shared.error(message: description)
+    public func logger() {
+        loggerInstance.error(message: description)
     }
 }

@@ -19,7 +19,7 @@ public enum RefdsLoggerTag: RefdsModel {
         }
     }
     
-    public var logger: Void {
+    public func logger() {
         console()
     }
     
