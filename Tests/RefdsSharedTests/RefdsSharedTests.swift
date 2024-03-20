@@ -119,13 +119,15 @@ final class RefdsSharedTests: XCTestCase {
     }
     
     func testRefdsLogger() {
+        RefdsLoggerTag.error(message: "").logger()
+        RefdsLoggerTag.info(message: "").console(bundle: nil)
         RefdsLoggerSystem.shared.error(bundle: "", message: "")
         RefdsLoggerSystem.shared.info(bundle: "", message: "")
     }
     
     func testRefdsModel() {
         let model = RefdsModelMock()
-        model.logger.error(bundle: "", message: "")
+        model.loggerInstance.error(bundle: "", message: "")
     }
     
     func testRefdsError() {
@@ -135,6 +137,7 @@ final class RefdsSharedTests: XCTestCase {
         let error4 = RefdsError.decodedError(type: RefdsModelMock.self)
         let error5 = RefdsError.custom(message: "")
         let error6 = RefdsError.custom(message: "")
+        error1.logger()
         
         XCTAssertFalse(error1.description.isEmpty)
         XCTAssertFalse(error2.description.isEmpty)
@@ -142,5 +145,18 @@ final class RefdsSharedTests: XCTestCase {
         XCTAssertFalse(error4.description.isEmpty)
         XCTAssertFalse(error5.description.isEmpty)
         XCTAssertEqual(error5, error6)
+    }
+    
+    func testRefdsString() {
+        RefdsStringLockScreen.allCases.forEach {
+            let _: String = .refdsString(.lockScreen($0))
+        }
+        
+        RefdsStringStorage.allCases.forEach {
+            let _: String = .refdsString(.storage($0))
+            let _ = $0.key
+        }
+        
+        let _ = RefdsString.lockScreen(.alertAuthError).key
     }
 }

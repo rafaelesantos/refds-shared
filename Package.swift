@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "RefdsShared",
+    defaultLocalization: "pt",
     platforms: [
         .iOS(.v17),
         .macCatalyst(.v17),

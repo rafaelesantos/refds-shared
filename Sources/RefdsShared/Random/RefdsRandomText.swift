@@ -8,11 +8,15 @@ public enum RefdsRandomText: CaseIterable {
     case steampunkAdventure
     
     public var word: String {
-        words.randomElement() ?? "Airship"
+        let words = words
+        let index = Int.random(in: 0 ..< words.count)
+        return words[index]
     }
     
     public var paragraph: String {
-        paragraphs.randomElement() ?? "High above the city skyline, an airship soared through the clouds, its brass hull gleaming in the sunlight as it embarked on a daring expedition."
+        let paragraphs = paragraphs
+        let index = Int.random(in: 0 ..< paragraphs.count)
+        return paragraphs[index]
     }
     
     var words: [String] {

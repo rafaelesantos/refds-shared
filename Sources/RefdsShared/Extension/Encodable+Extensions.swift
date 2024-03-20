@@ -11,8 +11,10 @@ public extension Encodable {
         guard let data = try? encoder.encode(self),
               let string = String(data: data, encoding: .utf8)
         else {
-            let string = RefdsError.encodedError(type: Self.self).description
-            return (success: false, content: string)
+            return (
+                success: false,
+                content: RefdsError.encodedError(type: Self.self).description
+            )
         }
         return (success: true, content: string)
     }

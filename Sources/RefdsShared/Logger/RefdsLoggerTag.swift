@@ -46,8 +46,6 @@ public enum RefdsLoggerTag: RefdsModel {
         function: String = #function
     ) -> String {
         let fileName = URL(fileURLWithPath: file).lastPathComponent
-        let dotIndexOrLast = fileName.firstIndex(of: ".") ?? fileName.endIndex
-        let fileWithoutExtension = String(fileName[fileName.startIndex ..< dotIndexOrLast])
-        return "[\(fileWithoutExtension)\t\(function): \(line)]"
+        return "[\(fileName)\t\(function): \(line)]"
     }
 }

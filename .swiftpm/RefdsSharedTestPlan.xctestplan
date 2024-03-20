@@ -1,14 +1,10 @@
 {
   "configurations" : [
     {
-      "id" : "CD03665B-7532-4F41-8B68-E6C29335A486",
+      "id" : "9BB54913-0885-4486-8BEE-CC063164ACEF",
       "name" : "Test Scheme Action",
       "options" : {
-        "targetForVariableExpansion" : {
-          "containerPath" : "container:",
-          "identifier" : "RefdsShared",
-          "name" : "RefdsShared"
-        }
+
       }
     }
   ],
@@ -21,17 +17,10 @@
           "name" : "RefdsShared"
         }
       ]
-    },
-    "targetForVariableExpansion" : {
-      "containerPath" : "container:",
-      "identifier" : "RefdsShared",
-      "name" : "RefdsShared"
-    },
-    "testExecutionOrdering" : "random"
+    }
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:",
         "identifier" : "RefdsSharedTests",
