@@ -159,4 +159,8 @@ final class RefdsSharedTests: XCTestCase {
         
         let _ = RefdsString.lockScreen(.alertAuthError).key
     }
+    
+    func testNumeric() {
+        let _: String = 1.asString
+    }
 }
