@@ -1,6 +1,12 @@
 import Foundation
 
-public enum RefdsError: Error, CustomStringConvertible, Equatable, RefdsLogger {
+public enum RefdsError:
+    Error,
+    CustomStringConvertible,
+    Equatable,
+    RefdsLogger,
+    RefdsAlert
+{
     case decodedError(type: Decodable.Type)
     case encodedError(type: Encodable.Type)
     case requestError(error: Error)
@@ -15,6 +21,20 @@ public enum RefdsError: Error, CustomStringConvertible, Equatable, RefdsLogger {
         case .notFound(let type): return "Error - not found - \(type.self)"
         case .custom(let message): return "Custom Error - \(message)"
         }
+    }
+    
+    public var title: String? {
+        switch self {
+        case .decodedError: return "Decoded Error"
+        case .encodedError: return "Encoded Error"
+        case .requestError: return "Request Error"
+        case .notFound: return "Not Found"
+        case .custom: return "Unknown error"
+        }
+    }
+    
+    public var message: String? {
+        description
     }
     
     public static func == (lhs: RefdsError, rhs: RefdsError) -> Bool {
