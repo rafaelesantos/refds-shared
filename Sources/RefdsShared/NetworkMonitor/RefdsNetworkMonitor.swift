@@ -1,16 +1,6 @@
 import SwiftUI
 import Network
 
-private struct RefdsNetworkMonitorEnvironmentKey: EnvironmentKey {
-    static var defaultValue = RefdsNetworkMonitor.shared
-}
-
-public extension EnvironmentValues {
-    var refdsNetworkMonitor: RefdsNetworkMonitor {
-        get { self[RefdsNetworkMonitorEnvironmentKey.self] }
-    }
-}
-
 public class RefdsNetworkMonitor: ObservableObject {
     public static let shared = RefdsNetworkMonitor()
     private let networkMonitor = NWPathMonitor()
