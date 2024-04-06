@@ -32,6 +32,12 @@ public extension String {
         return digest.map { String(format: "%02hhx", $0) }.joined()
     }
     
+    var capitalizedSentence: String {
+        let firstLetter = self.prefix(1).capitalized
+        let remainingLetters = self.dropFirst().lowercased()
+        return firstLetter + remainingLetters
+    }
+    
     enum DateFormat {
         case dayMonthYear
         case monthYear
