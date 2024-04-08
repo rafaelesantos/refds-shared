@@ -26,5 +26,11 @@ public extension Double {
         return originalDecimal
     }
     
-    var formatted: String { String(format: "%.2f", self) }
+    var formatted: String { 
+        String(format: "%.2f", self)
+    }
+    
+    func percent(format: String = "%2.f") -> String {
+        String(format: format, self * 100) + "%"
+    }
 }
