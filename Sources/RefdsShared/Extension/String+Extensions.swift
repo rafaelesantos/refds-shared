@@ -39,15 +39,23 @@ public extension String {
     }
     
     enum DateFormat {
+        case day
+        case month
+        case year
         case dayMonthYear
         case monthYear
+        case fullMonthYear
         case weekMonthYear
         case custom(String)
         
         public var value: String {
             switch self {
+            case .day: return "dd"
+            case .month: return "MMMM"
+            case .year: return "yyyy"
             case .dayMonthYear: return "dd/MM/yyyy"
             case .monthYear: return "MM/yyyy"
+            case .fullMonthYear: return "MMMM/yyyy"
             case .weekMonthYear: return "EEEE/MM/yyyy"
             case .custom(let dateFormat): return dateFormat
             }
