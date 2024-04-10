@@ -136,7 +136,6 @@ public extension Color {
         case blue,
              brown,
              cyan,
-             gray,
              green,
              indigo,
              mint,
@@ -145,9 +144,7 @@ public extension Color {
              purple,
              red,
              teal,
-             yellow,
-             label,
-             secondaryLabel
+             yellow
         
         public var id: String { rawValue.asHex() }
 
@@ -156,7 +153,6 @@ public extension Color {
             case .blue: return .blue
             case .brown: return .brown
             case .cyan: return .cyan
-            case .gray: return .gray
             case .green: return .green
             case .indigo: return .indigo
             case .mint: return .mint
@@ -166,8 +162,6 @@ public extension Color {
             case .red: return .red
             case .teal: return .teal
             case .yellow: return .yellow
-            case .label: return .primary
-            case .secondaryLabel: return .secondary
             }
         }
     }
