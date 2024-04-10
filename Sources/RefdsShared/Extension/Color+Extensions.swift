@@ -15,6 +15,11 @@ public extension Color {
     #endif
     
     init(hex: String) {
+        guard hex.count == 7 || hex.count == 6 else {
+            self.init(Color.accentColor)
+            return
+        }
+        
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
@@ -82,7 +87,7 @@ public extension Color {
     }
     
     func asHex(alpha: Bool = false) -> String {
-        guard let components = colorComponents else { return "#D2D2D2" }
+        guard let components = colorComponents else { return Color.accentColor.asHex() }
         
         let r = Float(components.red)
         let g = Float(components.green)
