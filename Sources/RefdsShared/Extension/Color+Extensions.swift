@@ -16,7 +16,14 @@ public extension Color {
     
     init(hex: String) {
         guard hex.count == 7 || hex.count == 6 else {
-            self.init(Color.accentColor)
+            let components = Color.accentColor.colorComponents
+            self.init(
+                .sRGB,
+                red: Double(components?.red ?? .zero) / 255,
+                green: Double(components?.green ?? .zero) / 255,
+                blue:  Double(components?.blue ?? .zero) / 255,
+                opacity: Double(components?.alpha ?? .zero) / 255
+            )
             return
         }
         
