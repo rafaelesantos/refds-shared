@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 public extension Double {
     func rounded(toPlaces places: Int) -> Double {
@@ -32,5 +33,11 @@ public extension Double {
     
     func percent(format: String = "%2.f") -> String {
         String(format: format, self * 100) + "%"
+    }
+    
+    var riskColor: Color {
+        self < 0.6 ? .green :
+        self < 0.9 ? .yellow :
+        self < 1 ? .orange : .red
     }
 }
