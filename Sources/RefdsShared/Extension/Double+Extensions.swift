@@ -40,4 +40,11 @@ public extension Double {
         self < 0.9 ? .yellow :
         self < 1 ? .orange : .red
     }
+    
+    var riskDescription: String {
+        self < 0.6 ? .localizable(by: .riskLowDescription) :
+        self < 0.9 ? .localizable(by: .riskMediumDescription) :
+        self < 1 ? .localizable(by: .riskHighDescription) :
+        .localizable(by: .riskWarningDescription)
+    }
 }
