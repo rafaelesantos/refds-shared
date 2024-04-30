@@ -42,9 +42,9 @@ public extension Double {
     }
     
     var riskDescription: String {
-        self < 0.6 ? .localizable(by: .riskLowDescription) :
-        self < 0.9 ? .localizable(by: .riskMediumDescription) :
-        self < 1 ? .localizable(by: .riskHighDescription) :
-        .localizable(by: .riskWarningDescription)
+        self < 0.6 ? .refdsLocalizable(by: .riskLowDescription) :
+        self < 0.9 ? .refdsLocalizable(by: .riskMediumDescription) :
+        self < 1 ? .refdsLocalizable(by: .riskHighDescription) :
+        .refdsLocalizable(by: .riskWarningDescription)
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public enum LocalizableKey: String {
+public enum RefdsLocalizableKey: String {
     case lockScreenTitle
     case lockScreenDescription
     case lockScreenButtonTitle
