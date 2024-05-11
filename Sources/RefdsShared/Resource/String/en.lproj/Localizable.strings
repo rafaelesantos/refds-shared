@@ -13,3 +13,7 @@
 "riskHighDescription" = "High";
 "riskWarningDescription" = "Very High";
 
+// MARK: - Welcome
+
+"welcomeIntroduction" = "Welcome to";
+

@@ -10,4 +10,5 @@ public enum RefdsLocalizableKey: String {
     case riskMediumDescription
     case riskHighDescription
     case riskWarningDescription
+    case welcomeIntroduction
 }
