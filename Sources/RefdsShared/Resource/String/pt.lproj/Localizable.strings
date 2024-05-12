@@ -1,6 +1,6 @@
 // MARK: - Lock Screen
 
-"lockScreenTitle" = "Dê um passo adiante";
+"lockScreenTitle" = "Dê um Passo Adiante";
 "lockScreenDescription" = "É com grande satisfação que o recebemos novamente. Prepare-se para uma experiência cuidadosamente projetada para atender às suas necessidades";
 "lockScreenButtonTitle" = "Prosseguir";
 "lockScreenRequestAuthReason" = "Olá! Estamos implementando uma camada extra de segurança para garantir a proteção dos seus dados. Pedimos sua biometria para desbloquear o aplicativo, oferecendo uma experiência mais segura e conveniente. Agradecemos pela compreensão e colaboração!";
