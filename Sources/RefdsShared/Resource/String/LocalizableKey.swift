@@ -5,7 +5,10 @@ public enum RefdsLocalizableKey: String {
     case lockScreenDescription
     case lockScreenButtonTitle
     case lockScreenRequestAuthReason
-    case lockScreenAlertAuthError
+    case lockScreenAuthErrorNoBiometricsTitle
+    case lockScreenAuthErrorNoBiometricsDescription
+    case lockScreenAuthErrorTitle
+    case lockScreenAuthErrorDescription
     case riskLowDescription
     case riskMediumDescription
     case riskHighDescription
