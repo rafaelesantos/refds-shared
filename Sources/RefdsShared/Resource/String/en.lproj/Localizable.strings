@@ -1,6 +1,6 @@
 // MARK: - Lock Screen
 
-"lockScreenTitle" = "Take a step forward";
+"lockScreenTitle" = "Take a Step Forward";
 "lockScreenDescription" = "We are pleased to welcome you again. Get ready for a carefully designed experience to meet your needs";
 "lockScreenButtonTitle" = "Proceed";
 "lockScreenRequestAuthReason" = "Hello! We're implementing an extra layer of security to ensure the protection of your data. We're requesting your biometrics to unlock the app, providing a more secure and convenient experience. Thank you for your understanding and cooperation!";
