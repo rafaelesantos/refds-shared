@@ -121,9 +121,9 @@ public extension Color {
     
     static func background(for colorScheme: ColorScheme) -> Self {
         #if os(macOS)
-        colorScheme == .light ? Color(hex: "F2F2F7") : Color(nsColor: .windowBackgroundColor)
+        Color(nsColor: .windowBackgroundColor)
         #elseif os(iOS)
-        colorScheme == .light ? Color(hex: "F2F2F7") : Color(uiColor: .systemBackground)
+        Color(uiColor: .systemBackground)
         #else
         colorScheme == .light ? Color.white : Color.black
         #endif
