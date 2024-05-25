@@ -14,42 +14,20 @@ public extension Color {
     typealias SystemColor = UIColor
     #endif
     
-    init(hex: String) {
-        guard hex.count == 7 || hex.count == 6 else {
-            let components = Color.accentColor.colorComponents
-            self.init(
-                .sRGB,
-                red: Double(components?.red ?? .zero) / 255,
-                green: Double(components?.green ?? .zero) / 255,
-                blue:  Double(components?.blue ?? .zero) / 255,
-                opacity: Double(components?.alpha ?? .zero) / 255
-            )
-            return
-        }
+    init(hex: String, opacity: Double = 1) {
+        let hex = Color.normalize(hex)
+        var rgbValue: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&rgbValue)
         
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
+        let red = Double((rgbValue & 0xFF0000) >> 16) / 255.0
+        let green = Double((rgbValue & 0x00FF00) >> 8) / 255.0
+        let blue = Double(rgbValue & 0x0000FF) / 255.0
         
-        switch hex.count {
-        case 3: (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default: (a, r, g, b) = (1, 1, 1, 0)
-        }
-
-        self.init(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue:  Double(b) / 255,
-            opacity: Double(a) / 255
-        )
+        self.init(red: red, green: green, blue: blue)
     }
     
     var id: String {
-        asHex()
+        asHex
     }
     
     static var placeholder: Color {
@@ -60,63 +38,30 @@ public extension Color {
         Default.allCases.randomElement()!.rawValue
     }
     
-    private var colorComponents: (
-        red: CGFloat,
-        green: CGFloat,
-        blue: CGFloat,
-        alpha: CGFloat
-    )? {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
+    var asHex: String {
+        guard let components = cgColor?.components,
+              components.count >= 3 else { return "#007AFF" }
+        let red, green, blue: CGFloat
+        red = components[0]
+        green = components[1]
+        blue = components[2]
         
-        #if os(macOS)
-        SystemColor(self)
-            .usingColorSpace(.genericRGB)?
-            .getRed(
-                &r,
-                green: &g,
-                blue: &b,
-                alpha: &a
-            )
-        #else
-        guard SystemColor(self)
-            .getRed(
-                &r,
-                green: &g,
-                blue: &b,
-                alpha: &a
-            ) else { return nil }
-        #endif
+        let redInt = Int(red * 255)
+        let greenInt = Int(green * 255)
+        let blueInt = Int(blue * 255)
         
-        return (r, g, b, a)
+        return String(
+            format: "#%02X%02X%02X",
+            redInt,
+            greenInt,
+            blueInt
+        )
     }
     
-    func asHex(alpha: Bool = false) -> String {
-        guard let components = colorComponents else { return Color.accentColor.asHex() }
-        
-        let r = Float(components.red)
-        let g = Float(components.green)
-        let b = Float(components.blue)
-        let a = Float(components.alpha)
-        
-        if alpha {
-            return String(
-                format: "#%02lX%02lX%02lX%02lX",
-                lroundf(r * 255),
-                lroundf(g * 255),
-                lroundf(b * 255),
-                lroundf(a * 255)
-            )
-        } else {
-            return String(
-                format: "#%02lX%02lX%02lX",
-                lroundf(r * 255),
-                lroundf(g * 255),
-                lroundf(b * 255)
-            )
-        }
+    fileprivate static func normalize(_ hex: String) -> String {
+        let hex = hex.replacingOccurrences(of: "#", with: "")
+        guard hex.count == 6 else { return "007AFF" }
+        return hex
     }
     
     static func background(for colorScheme: ColorScheme) -> Self {
@@ -153,7 +98,7 @@ public extension Color {
              teal,
              yellow
         
-        public var id: String { rawValue.asHex() }
+        public var id: String { rawValue.asHex }
 
         public var rawValue: Color {
             switch self {
@@ -183,6 +128,6 @@ extension Color: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(asHex())
+        try container.encode(asHex)
     }
 }
