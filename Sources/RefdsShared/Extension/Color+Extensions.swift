@@ -40,7 +40,7 @@ public extension Color {
     
     var asHex: String {
         guard let components = cgColor?.components,
-              components.count >= 3 else { return "#007AFF" }
+              components.count >= 3 else { return "#28CD41" }
         let red, green, blue: CGFloat
         red = components[0]
         green = components[1]
@@ -60,7 +60,7 @@ public extension Color {
     
     fileprivate static func normalize(_ hex: String) -> String {
         let hex = hex.replacingOccurrences(of: "#", with: "")
-        guard hex.count == 6 else { return "007AFF" }
+        guard hex.count == 6 else { return "28CD41" }
         return hex
     }
     
