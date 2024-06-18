@@ -24,12 +24,12 @@ public enum RefdsLoggerTag: RefdsModel {
     }
     
     public func console(
-        bundle: String? = Bundle.module.bundleIdentifier,
+        bundle: String? = nil,
         file: String = #file,
         line: Int = #line,
         function: String = #function
     ) {
-        guard let bundle = bundle  else { return }
+        guard let bundle = bundle ?? Bundle.module.bundleIdentifier else { return }
         let log = OSLog(subsystem: bundle, category: "default")
         let callStackString = getCallStackString(file: file, line: line, function: function)
         let content = "\(key)\t\(callStackString)\t\(message)"
