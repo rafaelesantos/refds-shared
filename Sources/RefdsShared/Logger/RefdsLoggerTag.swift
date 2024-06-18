@@ -24,7 +24,7 @@ public enum RefdsLoggerTag: RefdsModel {
     }
     
     public func console(
-        bundle: String? = Bundle.main.bundleIdentifier,
+        bundle: String? = Bundle.module.bundleIdentifier,
         file: String = #file,
         line: Int = #line,
         function: String = #function
