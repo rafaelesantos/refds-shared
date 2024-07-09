@@ -21,4 +21,12 @@ public extension Date {
         let randomDate: TimeInterval = .random(in: pastDate ... currentDate)
         return randomDate.date
     }
+    
+    var days: Int? {
+        let calendar = Calendar.current
+        guard let interval = calendar.dateInterval(of: .year, for: self),
+              let days = calendar.dateComponents([.day], from: interval.start, to: interval.end).day
+        else { return 1 }
+        return days
+    }
 }
