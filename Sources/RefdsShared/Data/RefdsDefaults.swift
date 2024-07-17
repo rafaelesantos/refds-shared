@@ -1,7 +1,7 @@
 import Foundation
 
 @propertyWrapper
-public struct RefdsDefault<Value> {
+public struct RefdsDefaults<Value> {
     let key: String
     let defaultValue: Value
     
