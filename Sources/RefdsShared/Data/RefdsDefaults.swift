@@ -14,11 +14,11 @@ public struct RefdsDefaults<Value> {
         UserDefaults(suiteName: "refds.defaults") ?? .standard
     }
     
-    static func get<T>(for key: String) -> T? {
+    public static func get<T>(for key: String) -> T? {
         defaults.object(forKey: key) as? T
     }
     
-    static func set<T>(_ value: T, for key: String) {
+    public static func set<T>(_ value: T, for key: String) {
         defaults.set(value, forKey: key)
     }
 }
