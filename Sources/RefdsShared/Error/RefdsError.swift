@@ -42,6 +42,6 @@ public enum RefdsError:
     }
     
     public func logger() {
-        loggerInstance.error(message: description)
+        Self.loggerInstance.error(message: description)
     }
 }
