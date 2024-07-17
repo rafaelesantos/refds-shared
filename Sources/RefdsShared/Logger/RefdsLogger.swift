@@ -10,7 +10,7 @@ public extension RefdsLogger {
 }
 
 public final class RefdsLoggerSystem {
-    static let shared = RefdsLoggerSystem()
+    public static let shared = RefdsLoggerSystem()
     
     public func info(
         bundle: String? = Bundle.main.bundleIdentifier,
