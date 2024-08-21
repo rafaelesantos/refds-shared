@@ -19,3 +19,7 @@
 // MARK: - Welcome
 
 "welcomeIntroduction" = "Bem-vindo(a) ao";
+
+// MARK: - Task
+
+"refdsTask" = "refds.task.%@";

@@ -20,3 +20,6 @@
 
 "welcomeIntroduction" = "Welcome to";
 
+// MARK: - Task
+
+"refdsTask" = "refds.task.%@";
