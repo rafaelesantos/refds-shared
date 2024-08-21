@@ -1,6 +1,11 @@
 import Foundation
 
-public final class RefdsTask {
+public protocol RefdsTaskProtocol {
+    typealias ExecuteItem = () -> Void
+    func execute(items: [ExecuteItem])
+}
+
+public final class RefdsTask: RefdsTaskProtocol {
     private let group = DispatchGroup()
     private let queue: DispatchQueue
     
@@ -18,7 +23,6 @@ public final class RefdsTask {
         )
     }
     
-    public typealias ExecuteItem = () -> Void
     public func execute(items: [ExecuteItem]) {
         items.forEach { item in
             group.enter()
