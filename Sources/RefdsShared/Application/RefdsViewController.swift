@@ -6,13 +6,13 @@ import UIKit
 #endif
 
 public protocol RefdsViewControllerProtocol {
-    func present(controller: RefdsViewController)
+    func present(_ viewController: RefdsViewController)
 }
 
 #if os(macOS)
 public class RefdsViewController: NSViewController, RefdsViewControllerProtocol {
-    public func present(controller: RefdsViewController) {
-        self.presentAsModalWindow(controller)
+    public func present(_ viewController: RefdsViewController) {
+        self.presentAsModalWindow(viewController)
     }
 }
 
@@ -23,8 +23,8 @@ public extension NSViewController {
 }
 #else
 public class RefdsViewController: UIViewController, RefdsViewControllerProtocol {
-    public func present(controller: RefdsViewController) {
-        self.present(controller, animated: true)
+    public func present(_ viewController: RefdsViewController) {
+        self.present(viewController, animated: true)
     }
 }
 
@@ -34,4 +34,3 @@ public extension UIViewController {
     }
 }
 #endif
-
