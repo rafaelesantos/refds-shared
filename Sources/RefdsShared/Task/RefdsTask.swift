@@ -2,8 +2,7 @@ import Foundation
 
 public protocol RefdsTaskProtocol {
     typealias ExecuteItem = () -> Void
-    func concurrent(items: [ExecuteItem])
-    func sequential(items: [ExecuteItem])
+    func execute(items: [ExecuteItem])
 }
 
 public final class RefdsTask: RefdsTaskProtocol {
@@ -24,7 +23,7 @@ public final class RefdsTask: RefdsTaskProtocol {
         )
     }
     
-    public func concurrent(items: [ExecuteItem]) {
+    public func execute(items: [ExecuteItem]) {
         items.forEach { item in
             group.enter()
             queue.async {
@@ -33,16 +32,5 @@ public final class RefdsTask: RefdsTaskProtocol {
             }
         }
         group.wait()
-    }
-    
-    public func sequential(items: [ExecuteItem]) {
-        items.forEach { item in
-            group.enter()
-            queue.async {
-                item()
-                self.group.leave()
-            }
-            group.wait()
-        }
     }
 }
