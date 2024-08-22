@@ -5,6 +5,7 @@ import UIKit
 #endif
 
 public final class RefdsApplication {
+    public static let shared = RefdsApplication()
 #if os(macOS)
 #else
     public var rootViewController: UIViewController? {
