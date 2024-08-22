@@ -2,7 +2,10 @@ import Foundation
 
 public protocol RefdsTaskProtocol {
     typealias ExecuteItem = () -> Void
+    typealias ControlExecuteItem = (DispatchGroup) -> Void
+    
     func execute(items: [ExecuteItem])
+    func execute(items: [ControlExecuteItem])
 }
 
 public final class RefdsTask: RefdsTaskProtocol {
@@ -29,6 +32,16 @@ public final class RefdsTask: RefdsTaskProtocol {
             queue.async {
                 item()
                 self.group.leave()
+            }
+        }
+        group.wait()
+    }
+    
+    public func execute(items: [ControlExecuteItem]) {
+        items.forEach { item in
+            group.enter()
+            queue.async {
+                item(self.group)
             }
         }
         group.wait()
