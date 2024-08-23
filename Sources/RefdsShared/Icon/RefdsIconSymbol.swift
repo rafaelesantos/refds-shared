@@ -1,6 +1,6 @@
 import Foundation
 
-public enum RefdsIconSymbol: String, CaseIterable {
+public enum RefdsIconSymbol: String, CaseIterable, RefdsModel {
     public static var random: RefdsIconSymbol {
         RefdsIconSymbol.allCases.randomElement()!
     }
