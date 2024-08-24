@@ -6,6 +6,7 @@ public protocol RefdsTaskProtocol {
     
     func execute(items: [ExecuteItem])
     func execute(items: [ControlExecuteItem])
+    func sequential(items: [ControlExecuteItem])
 }
 
 public final class RefdsTask: RefdsTaskProtocol {
@@ -40,10 +41,16 @@ public final class RefdsTask: RefdsTaskProtocol {
     public func execute(items: [ControlExecuteItem]) {
         items.forEach { item in
             group.enter()
-            queue.async {
-                item(self.group)
-            }
+            queue.async { item(self.group) }
         }
         group.wait()
+    }
+    
+    public func sequential(items: [ControlExecuteItem]) {
+        items.forEach { item in
+            group.enter()
+            queue.async { item(self.group) }
+            group.wait()
+        }
     }
 }
