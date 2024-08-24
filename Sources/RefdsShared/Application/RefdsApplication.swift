@@ -8,6 +8,10 @@ import UIKit
 public final class RefdsApplication {
     public static let shared = RefdsApplication()
     
+    public var id: String? {
+        Bundle.main.bundleIdentifier
+    }
+    
     public var rootViewController: RefdsViewController? {
         #if os(macOS)
         let window = NSApplication.shared.windows.first
