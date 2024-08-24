@@ -3,7 +3,7 @@ import Foundation
 @propertyWrapper
 public struct RefdsDefaults<Value> {
     let key: String
-    let defaultValue: Value
+    var defaultValue: Value? = nil
     
     public var wrappedValue: Value? {
         get { Self.defaults.object(forKey: key) as? Value }
