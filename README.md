@@ -1,4 +1,4 @@
-# Refds Shared
+# 📦 Refds Shared
 
 [![CI](https://github.com/rafaelesantos/refds-shared/actions/workflows/swift.yml/badge.svg)](https://github.com/rafaelesantos/refds-shared/actions/workflows/swift.yml)
 
