@@ -4,6 +4,8 @@ public protocol RefdsTaskProtocol {
     typealias ExecuteItem = () -> Void
     typealias ControlExecuteItem = (DispatchGroup) -> Void
     
+    var queue: DispatchQueue { get }
+    
     func execute(items: [ExecuteItem])
     func execute(items: [ControlExecuteItem])
     func sequential(items: [ControlExecuteItem])
@@ -11,7 +13,7 @@ public protocol RefdsTaskProtocol {
 
 public final class RefdsTask: RefdsTaskProtocol {
     private let group = DispatchGroup()
-    private let queue: DispatchQueue
+    public var queue: DispatchQueue
     
     static let shared = RefdsTask()
     
