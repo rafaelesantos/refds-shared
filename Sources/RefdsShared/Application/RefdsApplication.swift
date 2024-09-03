@@ -12,6 +12,10 @@ public final class RefdsApplication {
         Bundle.main.bundleIdentifier
     }
     
+    public var version: String? {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    
     public var rootViewController: RefdsViewController? {
         #if os(macOS)
         let window = NSApplication.shared.windows.first
