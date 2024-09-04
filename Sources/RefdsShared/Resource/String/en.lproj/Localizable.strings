@@ -23,3 +23,7 @@
 // MARK: - Task
 
 "refdsTask" = "refds.task.%@";
+
+// MARK: - Design System
+
+"refdsMonthYearPickerViewToday" = "Today's Date";
