@@ -7,6 +7,6 @@ public extension TimeInterval {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale.current
         dateFormatter.dateFormat = dateFormat.value
-        return dateFormatter.string(from: self.date)
+        return dateFormatter.string(from: date)
     }
 }
