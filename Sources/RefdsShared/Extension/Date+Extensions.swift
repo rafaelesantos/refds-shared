@@ -1,8 +1,6 @@
 import Foundation
 
 public extension Date {
-    static var current: Date { return Date() }
-    
     var timestamp: TimeInterval { self.timeIntervalSince1970 }
     
     func asString(withDateFormat dateFormat: String.DateFormat = .dayMonthYear) -> String {
@@ -13,11 +11,11 @@ public extension Date {
     }
     
     static var random: Date {
-        guard let day = current.asString(withDateFormat: .day).asInt,
-              let month = current.asString(withDateFormat: .custom("MM")).asInt,
-              let year = current.asString(withDateFormat: .year).asInt else { return current }
-        guard let pastDate = "\(day)/\(month - 2)/\(year)".asDate(withFormat: .dayMonthYear)?.timestamp else { return current }
-        let currentDate = current.timestamp
+        guard let day = now.asString(withDateFormat: .day).asInt,
+              let month = now.asString(withDateFormat: .custom("MM")).asInt,
+              let year = now.asString(withDateFormat: .year).asInt else { return now }
+        guard let pastDate = "\(day)/\(month - 2)/\(year)".asDate(withFormat: .dayMonthYear)?.timestamp else { return now }
+        let currentDate = now.timestamp
         let randomDate: TimeInterval = .random(in: pastDate ... currentDate)
         return randomDate.date
     }
