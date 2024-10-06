@@ -48,4 +48,8 @@ public extension Encodable {
         }
         return header + body
     }
+    
+    func logger() async {
+        await RefdsLoggerSystem.shared.info(message: message)
+    }
 }

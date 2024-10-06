@@ -6,12 +6,12 @@ import UIKit
 #endif
 
 public protocol RefdsViewControllerProtocol {
-    func present(_ viewController: RefdsViewController?)
+    func present(_ viewController: RefdsViewController?) async
 }
 
 #if os(macOS)
 public class RefdsViewController: NSViewController, RefdsViewControllerProtocol {
-    public func present(_ viewController: RefdsViewController?) {
+    public func present(_ viewController: RefdsViewController?) async {
         guard let viewController = viewController else { return }
         self.presentAsModalWindow(viewController)
     }

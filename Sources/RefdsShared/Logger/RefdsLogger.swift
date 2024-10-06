@@ -2,14 +2,14 @@ import Foundation
 
 public protocol RefdsLogger {
     static var loggerInstance: RefdsLoggerSystem { get }
-    func logger()
+    func logger() async
 }
 
 public extension RefdsLogger {
     static var loggerInstance: RefdsLoggerSystem { .shared }
 }
 
-public final class RefdsLoggerSystem {
+public actor RefdsLoggerSystem {
     public static let shared = RefdsLoggerSystem()
     
     public func info(

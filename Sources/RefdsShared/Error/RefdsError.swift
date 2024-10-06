@@ -41,7 +41,7 @@ public enum RefdsError:
         lhs.description == rhs.description
     }
     
-    public func logger() {
-        Self.loggerInstance.error(message: description)
+    public func logger() async {
+        await Self.loggerInstance.error(message: description)
     }
 }

@@ -1,12 +1,12 @@
 import Foundation
 
-public protocol RefdsModel: Codable, RefdsLogger {
+public protocol RefdsModel: Codable, Sendable, RefdsLogger {
     
 }
 
 public extension RefdsModel {
-    func logger() {
+    func logger() async {
         let encodable = (self as Encodable).message
-        Self.loggerInstance.info(message: encodable)
+        await Self.loggerInstance.info(message: encodable)
     }
 }

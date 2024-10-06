@@ -5,8 +5,8 @@ import AppKit
 import UIKit
 #endif
 
-public final class RefdsApplication {
-    public static let shared = RefdsApplication()
+public actor RefdsApplication {
+    public init() {}
     
     public var id: String? {
         Bundle.main.bundleIdentifier
@@ -17,13 +17,15 @@ public final class RefdsApplication {
     }
     
     public var rootViewController: RefdsViewController? {
-        #if os(macOS)
-        let window = NSApplication.shared.windows.first
-        return window?.contentViewController?.refdsViewController
-        #else
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let window = windowScene?.windows.first
-        return window?.rootViewController?.refdsViewController
-        #endif
+        get async {
+            #if os(macOS)
+            let window = await NSApplication.shared.windows.first
+            return await window?.contentViewController?.refdsViewController
+            #else
+            let windowScene = await UIApplication.shared.connectedScenes.first as? UIWindowScene
+            let window = await windowScene?.windows.first
+            return await window?.rootViewController?.refdsViewController
+            #endif
+        }
     }
 }

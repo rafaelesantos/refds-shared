@@ -5,8 +5,7 @@ public enum RefdsFileManagerPrivacy: String {
     case `private` = ".private"
 }
 
-public final class RefdsFileManager {
-    public static var `default` = RefdsFileManager()
+public actor RefdsFileManager {
     private var fileManager = FileManager.default
     
     private init() {}
