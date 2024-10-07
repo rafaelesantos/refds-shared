@@ -5,7 +5,7 @@ import AppKit
 import UIKit
 #endif
 
-public protocol RefdsViewControllerProtocol {
+public protocol RefdsViewControllerProtocol: Sendable {
     func present(_ viewController: RefdsViewController?) async
 }
 
@@ -19,12 +19,12 @@ public class RefdsViewController: NSViewController, RefdsViewControllerProtocol 
 
 public extension NSViewController {
     var refdsViewController: RefdsViewController? {
-        self as? RefdsViewController
+        get async { self as? RefdsViewController }
     }
 }
 #else
 public class RefdsViewController: UIViewController, RefdsViewControllerProtocol {
-    public func present(_ viewController: RefdsViewController?) {
+    public func present(_ viewController: RefdsViewController?) async {
         guard let viewController = viewController else { return }
         self.present(viewController, animated: true)
     }
@@ -32,7 +32,7 @@ public class RefdsViewController: UIViewController, RefdsViewControllerProtocol 
 
 public extension UIViewController {
     var refdsViewController: RefdsViewController? {
-        self as? RefdsViewController
+        get async { self as? RefdsViewController }
     }
 }
 #endif
