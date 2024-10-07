@@ -23,8 +23,5 @@ let package = Package(
     targets: [
         .target(
             name: "RefdsShared"),
-        .testTarget(
-            name: "RefdsSharedTests",
-            dependencies: ["RefdsShared"]),
     ]
 )
