@@ -8,6 +8,8 @@ public enum RefdsFileManagerPrivacy: String {
 public actor RefdsFileManager {
     private var fileManager = FileManager.default
     
+    public init() {}
+    
     public func path(
         with name: String,
         privacy: RefdsFileManagerPrivacy = .public
