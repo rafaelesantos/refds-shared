@@ -13,7 +13,7 @@ public extension Encodable {
         else {
             return (
                 success: false,
-                content: RefdsError.encodedError(type: Self.self).description
+                content: RefdsError.encode(for: Self.self).localizedDescription
             )
         }
         return (success: true, content: string)
