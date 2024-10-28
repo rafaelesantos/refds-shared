@@ -19,18 +19,22 @@ public actor RefdsDictionary<
     }
     
     public subscript(key: Key) -> Value? {
-        get { elements[key] }
-        set {
-            guard let newValue else { return remove(for: key) }
-            if !canInsert { removeFirst() }
-            guard let _ = elements[key] else {
-                insert(newValue, in: key)
-                elements[key] = newValue
-                return
-            }
-            reorder(for: newValue, in: key)
+        get async { elements[key] }
+    }
+    
+    public func set(
+        _ newValue: Value?,
+        on key: Key
+    ) {
+        guard let newValue else { return remove(for: key) }
+        if !canInsert { removeFirst() }
+        guard let _ = elements[key] else {
+            insert(newValue, on: key)
             elements[key] = newValue
+            return
         }
+        reorder(for: newValue, on: key)
+        elements[key] = newValue
     }
     
     private func removeFirst() {
@@ -49,7 +53,7 @@ public actor RefdsDictionary<
     
     private func insert(
         _ newValue: Value,
-        in key: Key
+        on key: Key
     ) {
         let rhs = newValue[keyPath: keyPath]
         let index = keys.firstIndex(where: { k in
@@ -59,7 +63,10 @@ public actor RefdsDictionary<
         keys.insert(key, at: index)
     }
     
-    private func reorder(for newValue: Value, in key: Key) {
+    private func reorder(
+        for newValue: Value,
+        on key: Key
+    ) {
         guard newValue[keyPath: keyPath] != elements[key].map({ $0[keyPath: keyPath] }) else { return }
         keys.sort { lhs, rhs in
             guard let lhsc = elements[lhs].map({ $0[keyPath: keyPath] }),
