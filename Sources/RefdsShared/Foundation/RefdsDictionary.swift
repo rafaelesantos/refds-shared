@@ -22,18 +22,20 @@ public actor RefdsDictionary<
         get { elements[key] }
         set {
             guard let newValue else { return remove(for: key) }
-            guard canInsert else { return }
-            if elements[key] == nil { insert(for: key) }
+            if !canInsert { removeFirst() }
+            guard let _ = elements[key] else {
+                insert(newValue, in: key)
+                elements[key] = newValue
+                return
+            }
+            reorder(for: newValue, in: key)
             elements[key] = newValue
         }
     }
     
-    @discardableResult
-    public func removeFirst() -> Value? {
-        guard let firstKey = keys.first else { return nil }
-        let element = elements[firstKey]
+    private func removeFirst() {
+        guard let firstKey = keys.first else { return }
         remove(for: firstKey)
-        return element
     }
     
     public var count: Int { keys.count }
@@ -45,17 +47,30 @@ public actor RefdsDictionary<
         return count < maxCapacity
     }
     
-    private func insert(for key: Key) {
+    private func insert(
+        _ newValue: Value,
+        in key: Key
+    ) {
+        let rhs = newValue[keyPath: keyPath]
         let index = keys.firstIndex(where: { k in
-            guard let lhs = elements[k].map({ $0[keyPath: keyPath] }),
-                  let rhs = elements[key].map({ $0[keyPath: keyPath] }) else { return false }
-            return lhs >= rhs
+            guard let lhs = elements[k].map({ $0[keyPath: keyPath] }) else { return false }
+            return lhs > rhs
         }) ?? keys.count
         keys.insert(key, at: index)
     }
     
+    private func reorder(for newValue: Value, in key: Key) {
+        guard newValue[keyPath: keyPath] != elements[key].map({ $0[keyPath: keyPath] }) else { return }
+        keys.sort { lhs, rhs in
+            guard let lhsc = elements[lhs].map({ $0[keyPath: keyPath] }),
+                  let rhsc = elements[rhs].map({ $0[keyPath: keyPath] }) else { return false }
+            return lhsc < rhsc
+        }
+    }
+    
     private func remove(for key: Key) {
         elements.removeValue(forKey: key)
-        keys.removeAll { $0 == key }
+        guard let index = keys.firstIndex(of: key) else { return }
+        keys.remove(at: index)
     }
 }
