@@ -1,6 +1,6 @@
 import Foundation
 
-public enum RefdsError: Error, LocalizedError {
+public enum RefdsError: Error, LocalizedError, RefdsLogger {
     case with(message: String)
     
     public static func decode<T>(for type: T.Type) -> Error {
@@ -29,5 +29,9 @@ public enum RefdsError: Error, LocalizedError {
     
     public static func cocoa(code: CocoaError.Code) -> Error {
         CocoaError(code)
+    }
+    
+    public func logger() async {
+        await Self.loggerInstance.error(message: localizedDescription)
     }
 }
