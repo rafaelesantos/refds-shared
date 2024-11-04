@@ -38,6 +38,10 @@ public extension String {
         return firstLetter + remainingLetters
     }
     
+    func enter() -> String {
+        self + "\n"
+    }
+    
     enum DateFormat {
         case day
         case month
