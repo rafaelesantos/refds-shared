@@ -35,3 +35,9 @@ public enum RefdsError: Error, LocalizedError, RefdsLogger {
         await Self.loggerInstance.error(message: localizedDescription)
     }
 }
+
+extension Error {
+    public func logger() async {
+        await RefdsLoggerSystem.shared.error(message: localizedDescription)
+    }
+}
